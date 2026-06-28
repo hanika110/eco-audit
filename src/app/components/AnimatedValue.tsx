@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'motion/react';
-import { animate } from 'motion';
+import { motion, useInView, animate } from 'motion/react';
 
 interface Props {
   value: string;
@@ -8,8 +7,6 @@ interface Props {
   duration?: number;
 }
 
-// Parses "1,284 kg" → { prefix:"", num:1284, suffix:" kg", decimals:0, useCommas:true }
-// Returns null when the string has no numeric content (e.g. "Organic")
 function parse(v: string) {
   const m = v.match(/^([^0-9\-]*)([0-9,]+\.?[0-9]*)(.*)$/);
   if (!m) return null;
@@ -25,18 +22,18 @@ function parse(v: string) {
 
 export const AnimatedValue: React.FC<Props> = ({ value, className, duration = 1.8 }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  // Trigger once when element scrolls into view, with a -40px bottom margin so it fires slightly before fully visible
-  const isInView = useInView(ref as React.RefObject<Element>, { once: true, margin: '0px 0px -40px 0px' });
+  const isInView = useInView(ref as React.RefObject<Element>, { once: false, margin: '0px 0px -40px 0px' });
   const [display, setDisplay] = useState<string | null>(null);
   const parsed = parse(value);
 
   useEffect(() => {
-    if (!isInView || !parsed) return;
+    if (!parsed) return;
     const { prefix, num, suffix, decimals, useCommas } = parsed;
 
+    // Always animate when value changes, whether or not in view
     const ctrl = animate(0, num, {
       duration,
-      ease: [0.16, 1, 0.3, 1], // custom spring-like ease — fast start, gentle settle
+      ease: [0.16, 1, 0.3, 1],
       onUpdate(v) {
         const formatted =
           decimals > 0
@@ -47,15 +44,13 @@ export const AnimatedValue: React.FC<Props> = ({ value, className, duration = 1.
         setDisplay(prefix + formatted + suffix);
       },
       onComplete() {
-        // Snap to exact final value to avoid float drift
         setDisplay(value);
       },
     });
 
     return () => ctrl.stop();
-  }, [isInView]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [value]); // re-run whenever value changes
 
-  // No numeric content — render plain
   if (!parsed) {
     return <span ref={ref} className={className}>{value}</span>;
   }
@@ -66,7 +61,6 @@ export const AnimatedValue: React.FC<Props> = ({ value, className, duration = 1.
     <motion.span
       ref={ref}
       className={className}
-      // Subtle scale pulse synced to the count duration
       animate={isInView ? { scale: [1, 1.045, 1] } : { scale: 1 }}
       transition={{ duration, times: [0, 0.25, 1], ease: 'easeOut' }}
       style={{ display: 'inline-block' }}
