@@ -1,0 +1,185 @@
+Here's a comprehensive, detailed Figma prompt focused strictly on your 5 core features:
+
+---
+
+## Figma Design Prompt: EcoAudit – Community Waste Logger
+
+---
+
+### Project Setup
+
+Create a Figma file named **EcoAudit**. Set up two frames using Auto Layout:
+
+- **Desktop** (1440 × 900px) — primary design surface
+- **Mobile** (390 × 844px) — responsive variant
+
+Use a 12-column grid (desktop) and 4-column grid (mobile). Define the following color styles:
+
+| Style Name | Hex |
+|---|---|
+| `primary/forest` | `#2E7D32` |
+| `primary/leaf` | `#66BB6A` |
+| `surface/page` | `#F8FAF5` |
+| `surface/card` | `#FFFFFF` |
+| `text/primary` | `#1F2937` |
+| `text/secondary` | `#6B7280` |
+| `status/success` | `#10B981` |
+| `status/error` | `#EF4444` |
+| `border/default` | `#E5E7EB` |
+
+Typography styles: Inter font family. `heading/xl` = 28px/500, `heading/lg` = 22px/500, `heading/md` = 18px/500, `body/md` = 16px/400, `body/sm` = 14px/400, `label/sm` = 12px/400.
+
+---
+
+### Screen 1 — Audit Dashboard (Primary View)
+
+**Frame:** 1440px wide. Background fill: `#F8FAF5`.
+
+**Top Navigation Bar**
+- Height: 64px. White background (`#FFFFFF`). Bottom border: 1px solid `#E5E7EB`.
+- Left side: Logo mark — a small leaf SVG icon (24×24px, filled `#2E7D32`) followed by wordmark "EcoAudit" in 18px/500 weight, color `#1F2937`.
+- Right side: A user avatar circle (36×36px, background `#E8F5E9`, initials "JD" in 13px/500, color `#2E7D32`) followed by a text label "Jane Doe" in 14px/400, `#6B7280`.
+- Between logo and avatar: empty flex spacer.
+
+**Page Header Section**
+- Padding: 40px top, 48px horizontal.
+- Left-aligned heading: "Waste audit dashboard" in 28px/500, color `#1F2937`.
+- Below it, a subtitle line: "Community-submitted waste logs with verified geolocation" in 16px/400, color `#6B7280`. Margin-top: 6px.
+- Right-aligned (same row as heading): A primary CTA button labeled "Log waste entry" — filled background `#2E7D32`, white label text 15px/500, padding 10px 20px, border-radius 8px, with a `+` icon (16px) left of the label.
+
+**Live Metrics Strip**
+- Positioned below the header, full width, horizontal padding 48px. Margin-top: 32px.
+- Four metric cards in a 4-column auto-layout row with 16px gaps.
+- Each card: white background, 1px border `#E5E7EB`, border-radius 12px, padding 20px 24px. No drop shadows.
+- Card 1 — **Total waste logged**: Label "Total waste logged" in 12px/400 `#6B7280`. Value "1,284 kg" in 28px/500 `#1F2937`. Below value: a small green upward-trend indicator — triangle icon + "↑ 12% this week" in 12px/400 `#10B981`.
+- Card 2 — **E-waste logged**: Label "E-waste logged". Value "312 kg". Trend "↑ 8% this week" in success green.
+- Card 3 — **Total entries**: Label "Total entries". Value "847". No trend indicator.
+- Card 4 — **Active contributors**: Label "Active contributors". Value "134". No trend indicator.
+
+> **Important design note:** The E-waste card must be visually distinct — apply a left border accent: 3px solid `#2E7D32` on the left edge of the card. This emphasizes it as the featured aggregated metric.
+
+**Waste Logs Feed Table**
+- Positioned below the metrics strip. Margin-top: 40px. Horizontal padding: 48px.
+- Section label above the table: "All waste entries" in 18px/500 `#1F2937`, left-aligned.
+- Directly right of that label (same baseline row): a search input field — 280px wide, 36px tall, placeholder "Search by category or location…", left-side magnifier icon (16px, `#9CA3AF`), border 1px `#E5E7EB`, border-radius 8px, background white.
+- Table below, full-width. White background, border-radius 12px, border 1px `#E5E7EB`.
+- **Table header row:** Background `#F9FBF9`. Row height 44px. Columns (with padding 12px 16px each):
+  - `#` (48px fixed width) — row number
+  - `Category` (140px)
+  - `Weight` (120px)
+  - `Latitude` (140px)
+  - `Longitude` (140px)
+  - `Submitted by` (160px)
+  - `Date & time` (180px)
+- All header labels: 12px/500, `#6B7280`, uppercase letter-spacing 0.5px.
+- **Table body rows** (show 8 sample rows). Row height: 52px. Alternating row backgrounds: odd rows white, even rows `#FAFAFA`. Bottom border on each row: 1px solid `#F3F4F6`.
+- Each row cells:
+  - `#`: 14px/400 `#9CA3AF`
+  - `Category`: A colored pill badge. Define badge styles per category — Plastic: background `#E3F2FD`, text `#1565C0`; E-Waste: background `#FFF3E0`, text `#E65100`; Organic: background `#E8F5E9`, text `#2E7D32`; Glass: background `#F3E5F5`, text `#7B1FA2`; Metal: background `#ECEFF1`, text `#37474F`; Paper: background `#FFF8E1`, text `#F57F17`. Badge: 6px horizontal padding, 3px vertical, border-radius 99px, 12px/500 text.
+  - `Weight`: 14px/400 `#1F2937`, e.g. "2.4 kg"
+  - `Latitude`: 13px/400 `#6B7280`, monospace font, e.g. "28.6139° N"
+  - `Longitude`: 13px/400 `#6B7280`, monospace font, e.g. "77.2090° E"
+  - `Submitted by`: 14px/400 `#1F2937` + small avatar circle (24px) left of name
+  - `Date & time`: 13px/400 `#9CA3AF`, e.g. "Jun 26, 2026 · 3:41 PM"
+- **Pagination bar** below the table (inside same card container): right-aligned. "Showing 1–8 of 847 entries" in 13px/400 `#6B7280`. Two arrow buttons (Previous / Next) as ghost-style 32×32px icon buttons with `#E5E7EB` border.
+
+---
+
+### Screen 2 — Log Waste Entry (Modal / Full Page)
+
+Design this as a **centered modal overlay** on top of the dashboard. Create a semi-transparent black overlay at 45% opacity (`rgba(0,0,0,0.45)`) covering the full dashboard behind it.
+
+**Modal Card**
+- Width: 520px. Auto height (fits content). White background. Border-radius: 16px. Padding: 32px. No drop shadow — the overlay provides depth contrast.
+- Center-aligned horizontally and vertically within the viewport.
+
+**Modal Header**
+- Title: "Log a waste entry" in 20px/500, `#1F2937`.
+- Subtitle directly below: "Your location is captured automatically on submit." in 14px/400, `#6B7280`.
+- A close `×` icon button (20px) top-right corner of the modal, `#9CA3AF`.
+- Divider line below header: 1px solid `#F3F4F6`. Margin: 20px 0.
+
+**Form Fields — Stacked Vertically with 20px gap**
+
+**Field 1: Waste Category**
+- Label: "Waste category" 14px/500 `#374151`. Asterisk `*` in `#EF4444` indicating required.
+- Input: A dropdown select. 44px height, full width, border 1px `#E5E7EB`, border-radius 8px, background white, placeholder "Select a category" in `#9CA3AF`. Right-side chevron-down icon (16px, `#9CA3AF`). Options (shown in dropdown): Plastic, Paper, Glass, Metal, Organic, Electronic, Textile, Mixed Waste.
+- Dropdown open state (design as a separate component state): White dropdown panel below, border 1px `#E5E7EB`, border-radius 8px, padding 4px 0. Each option row 36px tall, 16px horizontal padding, 14px/400 `#1F2937`, hover state background `#F0FDF4`. Active/selected item shows a checkmark icon (16px, `#2E7D32`) on the right.
+
+**Field 2: Weight**
+- Label: "Weight" 14px/500 `#374151` with `*`.
+- A horizontal two-component row: input field (flex-grow 1) + unit toggle (fixed 100px).
+- Input: 44px height, border 1px `#E5E7EB`, border-radius 8px left side only (right side square), placeholder "0.00", text right-aligned 16px/400.
+- Unit toggle: Segmented control with two options "kg" and "g". 44px height, 100px wide. Active option (default "kg") has filled background `#2E7D32` with white 13px/500 label. Inactive option: white background, `#6B7280` label. Full border 1px `#E5E7EB`, border-radius right side only.
+
+**Field 3: Notes (Optional)**
+- Label: "Notes" 14px/500 `#374151`. "(Optional)" label appended in 13px/400 `#9CA3AF`.
+- Textarea: full width, 88px height, border 1px `#E5E7EB`, border-radius 8px, placeholder "Add any details about this waste entry…", 14px/400, resize-none.
+
+**Geolocation Status Card**
+- Placed below the Notes field. Full-width card within the modal. Background `#F0FDF4`. Border: 1px solid `#BBF7D0`. Border-radius: 10px. Padding: 14px 16px.
+- Left side: A location-pin icon (18px, `#10B981`).
+- Right of icon: Two-line text block. Top line: "Location captured" in 14px/500 `#065F46`. Bottom line: "Lat 28.6139° N · Long 77.2090° E" in 13px/400 `#059669`, monospace font.
+- Far right: A green checkmark circle badge (20px diameter, filled `#10B981`, white `✓` inside).
+- **Error state variant** (design as a component variant): Background `#FEF2F2`, border `#FECACA`. Icon replaced with an X-circle icon `#EF4444`. Top line text: "Location unavailable" in `#7F1D1D`. Bottom line text: "Enable browser location to submit." in 13px/400 `#B91C1C`. No checkmark badge.
+- **Pending state variant**: Background `#FFFBEB`, border `#FDE68A`. A pulsing/spinner animation placeholder (use a dashed circle arc icon). Text: "Detecting location…" in `#92400E`. Bottom line: "Please wait — this may take a few seconds." in 13px/400 `#B45309`.
+
+> **Key annotation to add in Figma:** Place a red annotation label above or beside the location card reading: `⚠ No manual location input. Auto-captured via Geolocation API only.` Use Figma's native annotation/comment tool or a sticky note component in a distinct annotation layer.
+
+**Form Footer**
+- Divider line above footer: 1px `#F3F4F6`. Margin-top: 24px.
+- Two buttons right-aligned, 12px gap between them.
+- Cancel button: Ghost style — white background, 1px border `#E5E7EB`, label "Cancel" 15px/500 `#374151`, padding 10px 20px, border-radius 8px.
+- Submit button: Filled `#2E7D32`, white label "Submit log" 15px/500, padding 10px 24px, border-radius 8px. Left of label: small checkmark icon (16px). **Disabled state variant:** Background `#D1D5DB`, cursor not-allowed. Label: "Submit log" in `#9CA3AF`. Add Figma tooltip annotation: "Disabled until location is confirmed."
+
+---
+
+### Screen 3 — Success Toast Notification
+
+Design a toast component (not a modal — it floats bottom-right).
+
+- Dimensions: 340px wide, auto-height.
+- Background: white. Border-left: 4px solid `#10B981`. Border-radius: 10px. Padding: 14px 16px. No shadow.
+- Position annotation: "Fixed, bottom-right, 24px margin from edges."
+- Left icon: Green checkmark circle (20px, `#10B981`).
+- Right of icon: Title "Entry logged" 14px/500 `#1F2937`. Below it: "E-Waste · 2.4 kg · Lat 28.61°, Long 77.20°" in 13px/400 `#6B7280`.
+- Far-right: small `×` dismiss button, 16px, `#9CA3AF`.
+
+---
+
+### Component Library (to build in Figma as reusable components)
+
+Create a dedicated **Components** page in the Figma file with the following:
+
+1. **CategoryBadge** — 8 variants (one per waste category), each as a component with the appropriate color pill style defined above.
+2. **MetricCard** — Component with props: `label` (text), `value` (text), `trend` (optional, show/hide). Include a left-accent variant and a plain variant.
+3. **LocationStatusCard** — 3 variants: `captured`, `pending`, `error`.
+4. **WasteForm/SubmitButton** — 2 states: `active` and `disabled`.
+5. **TableRow** — Component with 7 cells matching the table column structure above. Odd/even background variant.
+6. **Toast/Success** — as described in Screen 3.
+
+---
+
+### Annotations Layer
+
+Create a separate Figma layer group called `📋 Annotations`. Inside it, place red sticky note components (use Figma's built-in sticky or a red-filled frame with white text) at these points:
+
+- On the Log form's location field: *"No text input for location. Geolocation API only — prevents manual spoofing."*
+- On the Submit button disabled state: *"Button stays disabled until navigator.geolocation.getCurrentPosition() resolves with coordinates."*
+- On the Latitude/Longitude columns in the table: *"Coordinates stored in DB from API — not editable by user."*
+- On the E-Waste metric card: *"Live aggregate: SUM(weight) WHERE category = 'Electronic' — updates on each new log."*
+- On the dashboard table: *"Fetches all rows from waste_logs table in Supabase/PostgreSQL — paginated at 50 rows."*
+
+---
+
+### Mobile Responsive Frame (390px)
+
+Replicate the two key screens at 390px width:
+
+**Mobile Dashboard:** Stack metric cards 2×2 grid. Table collapses to a card-list layout — each log becomes a card (white, border-radius 12px, 1px border) showing category badge, weight, coordinates in two lines of muted text, and timestamp. "Log waste entry" becomes a full-width sticky bottom bar button (56px tall, `#2E7D32` fill).
+
+**Mobile Log Form:** Full-screen bottom sheet (slide up from bottom). Same fields in single column. Location status card same design. Submit button full-width at bottom of sheet.
+
+---
+
+This gives you a complete, production-ready Figma spec covering all 5 required features with zero extraneous UI — every annotation, state, and component maps directly to a functional requirement.
